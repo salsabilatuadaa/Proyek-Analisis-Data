@@ -31,7 +31,7 @@ def create_season_df(df):
     return season_df
 # --------------------------------------------------------------
 
-bike_all_df = pd.read_csv("./Dashboard/bike_all_data.csv") 
+bike_all_df = pd.read_csv("./dashboard/bike_all_data.csv") 
 
 # --------------------------------------------------------------
 
