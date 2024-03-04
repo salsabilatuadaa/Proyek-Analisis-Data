@@ -87,7 +87,7 @@ st.subheader("Average Bike-Sharing Patterns")
 
 fig, ax= plt.subplots(figsize=(8, 5))
 colors = ["#1f77b4", "#ff7f0e"]
-sns.barplot(
+barplot=sns.barplot(
     x="workingday_day",
     y="total_count_day",
     data=weekday_weekend_df.sort_values(by="total_count_day", ascending=False),
@@ -98,6 +98,8 @@ ax.set_ylabel(None)
 ax.set_xlabel(None)
 ax.set_xticks(['No', 'Yes'])
 ax.set_xticklabels(['Weekends', 'Weekdays'])
+for index, row in weekday_weekend_df.iterrows():
+    barplot.text(row.name, row.total_count_day, round(row.total_count_day, 2), color='black', ha="center")
 st.pyplot(fig)
 
 
@@ -118,6 +120,8 @@ sns.barplot(y="weather_day", x="total_count_day", data=weather_df, palette="plas
 ax[0].set_xlabel(None)
 ax[0].set_ylabel(None)
 ax[0].set_title("Average Bike-Sharing by Weather", loc="center", fontsize=15)
+for i, val in enumerate(weather_df['total_count_day']):
+    ax[0].text(val, i, round(val, 2), color='black', ha="center")
 
 sns.barplot(y="season_day", x="total_count_day", data=season_df, palette="viridis", ax=ax[1])
 ax[1].set_xlabel(None)
@@ -126,4 +130,6 @@ ax[1].set_title("Average Bike-Sharing by Season", loc="center", fontsize=15)
 ax[1].invert_xaxis()
 ax[1].yaxis.set_label_position("right")
 ax[1].yaxis.tick_right()
+for i, val in enumerate(season_df['total_count_day']):
+    ax[1].text(val, i, round(val, 2), color='black', ha="center")
 st.pyplot(fig)
